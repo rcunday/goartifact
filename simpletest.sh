@@ -1,3 +1,5 @@
+
+ls ./linux
 chmod +x ./linux/simpleserver
 
 ./linux/simpleserver &
