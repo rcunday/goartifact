@@ -1,0 +1,33 @@
+name: artifact
+
+on: [push]
+env:
+    BIN_NAME: simpleserver
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out Code
+              uses: actions/checkout@v3
+            - name: Build ${{ env.BIN_NAME}} using ubuntu-latest
+              run: go build ${{ env.BIN_NAME}}.go
+            - name: Upload linux binary ${{ env.BIN_NAME}}
+              uses: actions/upload-artifact@v1.0.0
+              with:
+                name: linux
+                path: ./${{env.BIN_NAME}}
+    test-linux:
+        name: Test Linux Build
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+            - name: Download artifact
+              uses: actions/download-artifact@v3.0.0
+              with:
+                name: linux
+            - name: Test ${{ env.BIN_NAME}}
+              run: source ./simpletest.sh
