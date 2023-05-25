@@ -14,7 +14,7 @@ jobs:
             - name: Build ${{ env.BIN_NAME}} using ubuntu-latest
               run: go build ${{ env.BIN_NAME}}.go
             - name: Upload linux binary ${{ env.BIN_NAME}}
-              uses: actions/upload-artifact@v1.0.0
+              uses: actions/upload-artifact@v3
               with:
                 name: linux
                 path: ./${{env.BIN_NAME}}
@@ -26,7 +26,7 @@ jobs:
             - name: Checkout Code
               uses: actions/checkout@v3
             - name: Download artifact
-              uses: actions/download-artifact@v3.0.0
+              uses: actions/download-artifact@v3
               with:
                 name: linux
             - name: Test ${{ env.BIN_NAME}}
