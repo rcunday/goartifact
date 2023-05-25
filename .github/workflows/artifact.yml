@@ -11,6 +11,8 @@ jobs:
         steps:
             - name: Check out Code
               uses: actions/checkout@v3
+            - name: Golang Vulncheck
+              uses: Templum/govulncheck-action@v0.10.1
             - name: Build ${{ env.BIN_NAME}} using ubuntu-latest
               run: go build ${{ env.BIN_NAME}}.go
             - name: Upload linux binary ${{ env.BIN_NAME}}
