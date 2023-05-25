@@ -1,8 +1,8 @@
 
 ls 
-chmod +x ./linux/simpleserver
+chmod +x ./simpleserver
 
-./linux/simpleserver &
+./simpleserver &
 
 sleep 3
 
